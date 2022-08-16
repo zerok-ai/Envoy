@@ -1,0 +1,1 @@
+envoy -c collector_retry.yaml

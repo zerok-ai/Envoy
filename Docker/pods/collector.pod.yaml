@@ -1,0 +1,26 @@
+#target.collector.default.svc.cluster.local
+apiVersion: v1
+kind: Service
+metadata:
+  name: collector
+spec:
+  selector:
+    app: collector
+  clusterIP: None
+  ports:
+  - name: appport
+    port: 5000
+    targetPort: 5000
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: collector
+  labels:
+    app: collector
+spec:
+  hostname: target
+  subdomain: collector
+  containers:
+  - name: collector
+    image: training/webapp

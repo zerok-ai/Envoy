@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envoy
+  labels:
+    app: envoy
+spec:
+  containers:
+  - name: envoy
+    image: envoyproxy/envoy-alpine:v1.21-latest
+    ports:
+    - containerPort: 8080
+    command: ["envoy"]
+    args: ["-c", "/etc/envoy-config.yaml", "-l", "info"]
+    #, "--service-cluster", "'service-a'", "x--service-node", "'service-a'", "--log-format", "'[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"]
+    volumeMounts:
+    - name: envoy-config
+      mountPath: /etc/envoy-config.yaml
+      subPath: envoy-config.yaml
+  volumes:
+  - name: envoy-config
+    configMap:
+      name: mc3-envoy-conf
