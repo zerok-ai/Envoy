@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: envoy
+  name: ingress
   labels:
-    app: envoy
+    app: ingress
 spec:
   containers:
-  - name: envoy
+  - name: ingress
     image: envoyproxy/envoy-alpine:v1.21-latest
     ports:
     - containerPort: 8080
@@ -20,4 +20,4 @@ spec:
   volumes:
   - name: envoy-config
     configMap:
-      name: mc3-envoy-conf
+      name: ingress-envoy-conf
