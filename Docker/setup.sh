@@ -1,6 +1,6 @@
 # actions: 
 #   reset  - reset minikube and start with volume mount
-#   start  - (default) sets up configs, services and pods
+#   apply  - (default) sets up configs, services and pods
 #   fwd    - Start port forwarding
 #   delete - delete setup
 
